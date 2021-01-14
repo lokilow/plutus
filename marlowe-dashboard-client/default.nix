@@ -25,7 +25,9 @@ let
   client = buildPursPackage {
     inherit pkgs nodeModules;
     src = ./.;
-    checkPhase = "npm run test";
+    checkPhase = ''
+      node -e 'require("./output/Test.Main").main()'
+    '';
     name = "marlowe-dashboard-client";
     extraSrcs = {
       web-common = webCommon;
